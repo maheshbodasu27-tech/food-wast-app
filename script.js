@@ -131,9 +131,11 @@ function displayFood(){
   db.collection("foods").onSnapshot(snapshot => {
 
     list.innerHTML = "";
-if(snapshot.empty){
-  list.innerHTML = "<p>No food available</p>";
-}
+
+    if(snapshot.empty){
+      list.innerHTML = "<p>No food available</p>";
+      return;
+    }
 
     snapshot.forEach(doc => {
 
@@ -156,7 +158,7 @@ if(snapshot.empty){
 
       if(role === "ngo" && food.status === "Available"){
         li.innerHTML += `
-        <button onclick="acceptFood('${id}')" class="btn btn-primary mt-2">
+        <br><button onclick="acceptFood('${id}')" class="btn btn-primary mt-2">
         Accept
         </button>`;
       }
@@ -166,7 +168,8 @@ if(snapshot.empty){
     });
 
   });
-}      // 👇 NGO can accept food
+} 
+// 👇 NGO can accept food
       if(role === "ngo" && food.status === "Available"){
         li.innerHTML += `
         <br><button onclick="acceptFood('${id}')" class="btn btn-primary mt-2">
