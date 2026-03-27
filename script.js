@@ -179,7 +179,7 @@ function displayFood(){
 
       list.appendChild(li);
 
-    });
+
 
   });
 }
